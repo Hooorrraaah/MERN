@@ -3,26 +3,30 @@ import './App.css';
 
 import Person from './components/Person';
 
+var arr = [
+{"firstName":"Jane", "lastName":"Doe", "age":45, "hairColor":"Black"},
+{"firstName":"Smith", "lastName":"John", "age":88, "hairColor":"Brown"},
+{"firstName":"Millard", "lastName":"Fillmore", "age":50, "hairColor":"Brown"},
+{"firstName":"Maria", "lastName":"Smith", "age":62, "hairColor":"Brown"}
+]
+
 function App() { 
-  // const personCard = {
-  //     firstName:"",
-  //     lastName:"",
-  //     age:"",
-  //     hairColor:""
-  //   }
 
   return (
 
     
   <div className="App">
-      <Person personCard={"Austen","Jensen","29","Red"}></Person>
+      {/* <Person firstName={"Jane"} lastName ={"Doe"} age={45} hairColor={"Black"}></Person>
+      <Person firstName={"Smith"} lastName ={"John"} age={88} hairColor={"Brown"}></Person>
+      <Person firstName={"Millard"} lastName ={"Fillmore"} age={50} hairColor={"Brown"}></Person>
+      <Person firstName={"Maria"} lastName ={"Smith"} age={62} hairColor={"Brown"}></Person> */}
 
-      <Person personCard={"Austen","Jensen","29","Red"}></Person>
-
-      <Person personCard={"Austen","Jensen","29","Red"}></Person>
+    {arr.map(person => {
+      return <Person firstName={person.firstName} lastName={person.lastName} age={person.age} hairColor={person.hairColor} />
       
-      <Person personCard={"Austen","Jensen","29","Red"}></Person>
-    </div>
+    })}
+
+  </div>
   );
 }
 export default App;
