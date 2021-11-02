@@ -6,39 +6,64 @@ const UserForm = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [error, setError] = useState("")
 
-    const signUp = (e) => {
-        e.preventDefault();
-        const newUser = { firstName, lastName, email, password, confirmPassword};
+    const validation = (e) =>{
+        setFirstName(e.target.value);
+        if(e.target.value.length <1) {
+            setError("");
+        } else if(e.target.value.length <2) {
+            setError("must be atleast 2 characters");
+        }
     };
     return(
-        <form onSubmit={ signUp }>
+        <form onSubmit={ (e) => e.preventDefault() }>
             <div>
                 <label>First Name: </label>
-                <input type="text" onChange={ (e) => setFirstName(e.target.value) } value={ firstName } />
+                <input type="text" onChange={ validation} value={ firstName }/>
+                {
+                    error ?
+                    <p style={{color:'red'}}>First name {error}</p> :
+                    ''
+                }
             </div>
             <div>
                 <label>Last Name: </label>
-                <input type="text" onChange={ (e) => setLastName(e.target.value) } value={ lastName } />
+                <input type="text" onChange={ validation} />
+                {
+                    error ?
+                    <p style={{color:'red'}}>Last name {error}</p> :
+                    ''
+                }
             </div>
             <div>
                 <label>Email: </label>
-                <input type="text" onChange={ (e) => setEmail(e.target.value) } value={ email } />
+                <input type="text" onChange={ validation} />
+                {
+                    error ?
+                    <p style={{color:'red'}}>Email {error}</p> :
+                    ''
+                }
             </div>
             <div>
                 <label>Password: </label>
-                <input type="text" onChange={ (e) => setPassword(e.target.value) } value={ password } />
+                <input type="text" onChange={ validation} />
+                {
+                    error ?
+                    <p style={{color:'red'}}>Password {error}</p> :
+                    ''
+                }
             </div>
             <div>
                 <label>Confirm Password: </label>
-                <input type="text" onChange={ (e) => setConfirmPassword(e.target.value) } value={ confirmPassword }/>
+                <input type="text" onChange={ validation} />
+                {
+                    error ?
+                    <p style={{color:'red'}}>Confirm Password {error}</p> :
+                    ''
+                }
             </div>
-        <h3>Your Form Details:</h3>
-        <p>First Name: {firstName}</p>
-        <p>Last Name: {lastName}</p>
-        <p>Email: {email}</p>
-        <p>Password: {password}</p>
-        <p>Confirm Password: {confirmPassword}</p>
+            <input type="submit" value="Create User" />
         </form>
     );
     
