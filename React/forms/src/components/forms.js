@@ -6,57 +6,61 @@ const UserForm = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const [error, setError] = useState("");
+    const [errorFN, setErrorFN] = useState("");
+    const [errorLN, setErrorLN] = useState("");
+    const [errorE, setErrorE] = useState("");
+    const [errorP, setErrorP] = useState("");
+    const [errorCP, setErrorCP] = useState("");
 
 
     const validateFN= (e) => {
         setFirstName(e.target.value);
         if(e.target.value.length < 1) {
-            setError(""); 
+            setErrorFN(""); 
         } else if(e.target.value.length < 2) {
-            setError("First name must be at least 2 characters or longer!");
+            setErrorFN("First name must be at least 2 characters or longer!");
         }else{
-        setError("");
+        setErrorFN("");
     }
     };
     const validateLN= (e) => {
         setLastName(e.target.value);
         if(e.target.value.length < 1) {
-            setError("");
+            setErrorLN("");
         } else if(e.target.value.length < 2) {
-            setError("Last name must be at least 2 characters or longer!");
+            setErrorLN("Last name must be at least 2 characters or longer!");
         }else{
-        setError("");
+        setErrorLN("");
     }
     };
     const validateE= (e) => {
         setEmail(e.target.value);
         if(e.target.value.length < 1) {
-            setError("");
+            setErrorE("");
         } else if(e.target.value.length < 5) {
-            setError("Email must be at least 5 characters or longer!");
+            setErrorE("Email must be at least 5 characters or longer!");
         }else{
-        setError("");
+        setErrorE("");
     }
     };
     const validateP= (e) => {
         setPassword(e.target.value);
         if(e.target.value.length < 1) {
-            setError("");
+            setErrorP("");
         } else if(e.target.value.length < 8) {
-            setError("Password must be at least 8 characters or longer!");
+            setErrorP("Password must be at least 8 characters or longer!");
         }else{
-        setError("");
+        setErrorP("");
     }
     };
     const validateCP= (e) => {
         setConfirmPassword(e.target.value);
         if(e.target.value.length < 1) {
-            setError("");
-        } else if(e.target.value != password.target.value) {
-            setError("Passwords must match!");
+            setErrorCP("");
+        } else if(e.target.value != password) {
+            setErrorCP("Passwords must match!");
         }else{
-        setError("");
+        setErrorCP("");
     }
     };
     return(
@@ -65,8 +69,8 @@ const UserForm = (props) => {
             <label>First Name: </label>
             <input type="text" onChange={ validateFN } />
                 {
-                    error ?
-                    <p style={{color:'red'}}>{ error }</p> :
+                    errorFN ?
+                    <p style={{color:'red'}}>{ errorFN }</p> :
                     ''
                 }
             </div>
@@ -74,8 +78,8 @@ const UserForm = (props) => {
             <label>Last Name: </label>
             <input type="text" onChange={ validateLN } />
                 {
-                    error ?
-                    <p style={{color:'red'}}>{ error}</p> :
+                    errorLN ?
+                    <p style={{color:'red'}}>{ errorLN}</p> :
                     ''
                 }
             </div>
@@ -83,8 +87,8 @@ const UserForm = (props) => {
             <label>Email: </label>
             <input type="text" onChange={ validateE } />
                 {
-                    error ?
-                    <p style={{color:'red'}}>{ error }</p> :
+                    errorE ?
+                    <p style={{color:'red'}}>{ errorE }</p> :
                     ''
                 }
             </div>
@@ -92,8 +96,8 @@ const UserForm = (props) => {
             <label>Password: </label>
             <input type="text" onChange={ validateP } />
                 {
-                    error ?
-                    <p style={{color:'red'}}>{ error }</p> :
+                    errorP ?
+                    <p style={{color:'red'}}>{ errorP }</p> :
                     ''
                 }
             </div>
@@ -101,12 +105,12 @@ const UserForm = (props) => {
             <label>Confirm Password: </label>
             <input type="text" onChange={ validateCP } />
                 {
-                    error ?
-                    <p style={{color:'red'}}>{ error }</p> :
+                    errorCP ?
+                    <p style={{color:'red'}}>{ errorCP }</p> :
                     ''
                 }
             </div>
-            <input type="submit" value="Create User" />
+
         </form>
     );
     
