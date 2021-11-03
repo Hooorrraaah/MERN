@@ -5,7 +5,9 @@ const NewItem=(props)=>{
 
     const createNewItem= (e)=>{
         e.preventDefault()
+        if(addItem==="") return;
         props.passItem(addItem)
+        setAddItem('');
     }
 
     return(
