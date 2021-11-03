@@ -1,38 +1,48 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect}  from 'react'
 
 const View = (props) =>{
-    const [checked, setChecked] = useState(false);
+    const [items, setItems] = useState(props.items);
 
-    const handleChange=()=>{
-        if (checked===false){
-            setChecked(true)
+    useEffect(()=>{
+        if (props.items.length){
+        setItems([...items,props.items[props.items.length-1]])
+        }
+    },[props.items])
+
+    const handleChange=(item,i)=>{
+        if (item.checked===false){
+            const newItems = [...items]
+            newItems[i].checked=true
+            setItems(newItems)
         }
         else {
-            setChecked(false)
+            const newItems = [...items]
+            newItems[i].checked=false
+            setItems(newItems)
         }
+        
     }
 
-    // function remove(stuff){
-    //     setDeleter(deleter.filter(stuff))
-    // }
+    function remove(i) {
+        setItems(items.filter((j) => j !== i));
+    }
 
     return(
         <ul>
-            {props.items.map((stuff)=>{
-                let i = 0
+            {items.map((stuff,i)=>{
                 return (
                 <li type={'none'} >
                     
                     <input 
-                        type={"checkbox"}
-                        checked={checked}
-                        onChange={handleChange}>
+                        type="checkbox"
+                        checked={stuff.checked}
+                        onChange={() => {handleChange(stuff,i)} }>
                     </input>
-                    {checked ? 
-                        <span style={{textDecoration: 'line-through'}}>{stuff}</span>
-                        : <span>{stuff}</span>}
+                    {stuff.checked ? 
+                        <span style={{textDecoration: 'line-through'}}>{stuff.task}</span>
+                        : <span>{stuff.task}</span>}
                     
-                    <button>Delete</button>
+                    <button onClick ={() => {remove(stuff,i)}}>Delete</button>
                 </li>)
             }
             )}

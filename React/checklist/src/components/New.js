@@ -6,7 +6,11 @@ const NewItem=(props)=>{
     const createNewItem= (e)=>{
         e.preventDefault()
         if(addItem==="") return;
-        props.passItem(addItem)
+        const task = {
+            checked: false,
+            task: addItem
+        }
+        props.passItem(task)
         setAddItem('');
     }
 
