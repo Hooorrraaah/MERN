@@ -41,8 +41,8 @@ app.get('/api/companies/new',(req,res)=>{
 })
 
 app.get('/api/user/company/',(req,res)=>{
-    res.json(user);
-    res.json(company)
+    res.json({user, company});
+
 })
 
 app.listen(port)
