@@ -1,22 +1,22 @@
-import axios from 'axios';
-import { response } from 'express';
 import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 
-import ProductForm from '../components/ProductForm'
-import ProductList from '../components/ProductList'
+import ProductForm from '../Components/ProductForm';
+import ProductList from '../Components/ProductList';
 
 export default () => {
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState([])
 
-    useEffect(() => {
-        axios.get('http://localhost:8000/api/products')
-            .then(response=>setProducts(response.data))
-            .catch(error =>console.log("error:",error))
-    }, [])
+    useEffect(()=>{
+        axios.get("http://localhost:8000/api/products")
+            .then(res=>setProducts(res.data))       
+            .catch(err=>console.log("Error:", err))
+    }, []);
+
     return (
         <div>
-            <ProductForm/>
-            <ProductList products={products}/>
+            <ProductForm></ProductForm>
+            <ProductList products={products}></ProductList>
         </div>
     )
 }
