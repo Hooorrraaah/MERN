@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 export default props => {
+    const history = useHistory()
     const { initialName, onSubmitProp } = props;
     const [name, setName] = useState(initialName);
     const [nameError,setNameError] = useState('')
@@ -18,7 +19,13 @@ export default props => {
 
     const onSubmitHandler = e => {
         e.preventDefault();
+        if(nameError){
+            console.log(nameError)
+        }
+        else{
         onSubmitProp({name});
+            history.push("/")
+        }
     }
         
     return (

@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import AuthorForm from '../components/AuthorForm';
-import { Link } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 
 export default () => {
     const [authors, setAuthors] = useState([]);
     const [loaded, setLoaded] = useState(false);
+    const history = useHistory()
     useEffect(() => {
         axios.get('http://localhost:8000/api/authors')
             .then(res =>{ 
                 setAuthors(res.data)
                 setLoaded(true);
             });
-    }, [])
+    }, [authors])
 
     const createAuthor = author => {
         axios.post('http://localhost:8000/api/authors', author)

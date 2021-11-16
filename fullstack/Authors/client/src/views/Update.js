@@ -15,13 +15,12 @@ const Update = (props) => {
                 setAuthor(res.data);
                 setLoaded(true);
             })
-    }, []);
+    }, [author]);
     
     const updateAuthor = author => {
-        if(author.length > 2){
         axios.put('http://localhost:8000/api/authors/' + id, author)
-            .then(res => console.log(res));
-    }}
+            .then(res => {history.push('/')});
+    }
     
     return (
         <div>
